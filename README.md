@@ -1,7 +1,5 @@
-# Vue 3 + Vite
+# 前端实验室开发日志
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### Vue3+vite+pinia（后续可能会上typescript）
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+- 2022/5/26	引入router，下一步编写layout页面(还有vite的文件别名，router设置等等)

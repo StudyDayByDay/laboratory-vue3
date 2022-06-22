@@ -8,4 +8,7 @@ const app = createApp(App);
 
 app.use(Antd);
 app.use(router);
-app.mount('#app');
+// 处理在create中取不到this.$route的数据的解决办法。router4.0有一个特点就是所有导航都是异步了
+router.isReady().then(() => {
+    app.mount('#app');
+});

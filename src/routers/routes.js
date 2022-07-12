@@ -1,18 +1,236 @@
 // 这个是用来设置路由信息的文件
 // 不同模块的路由信息
 // 总的导出的路由信息
+import Layout from '@views/layout/index.vue';
+import notFound from '@views/NotFound/notFound.vue';
+import mainPage from '@views/mainPage/index.vue';
+const antd = [
+    {
+        path: '/table',
+        name: 'table',
+        component: () => import('@views/antd/table.vue'),
+        meta: {
+            title: '表格'
+        },
+    }
+];
+
+const elementUI = [
+    {
+        path: '/tree',
+        name: 'tree',
+        component: () => import('@views/elementUI/tree.vue'),
+        meta: {
+            title: '树'
+        },
+    }
+];
+
+const HTML = [
+    {
+        path: '/newElement',
+        name: 'newElement',
+        component: () => import('@views/HTML/newElement.vue'),
+        meta: {
+            title: '新元素'
+        },
+    }
+];
+
+const CSS = [
+    {
+        path: '/animation',
+        name: 'animation',
+        component: () => import('@views/CSS/animation.vue'),
+        meta: {
+            title: '动画'
+        },
+    }
+];
+
+const JavaScript = [
+    {
+        path: '/class',
+        name: 'class',
+        component: () => import('@views/JavaScript/class.vue'),
+        meta: {
+            title: '类'
+        },
+    }
+];
+
+const VUE = [
+    {
+        path: '/vue-router',
+        name: 'vue-router',
+        component: () => import('@views/VUE/vueRouter.vue'),
+        meta: {
+            title: 'vue-router'
+        },
+    }
+];
+
+const configs = [
+    {
+        path: '/esLint',
+        name: 'esLint',
+        component: () => import('@views/VUE/esLint.vue'),
+        meta: {
+            title: 'esLint'
+        },
+    },
+    // vite
+    // vue-cli
+    // stylelint
+    // babel
+];
+
+const menuRoutes = [
+    // main
+    {
+        path: '/main',
+        name: 'main',
+        meta: {
+            title: '主页',
+            menu: {
+                icon: {
+                    type: '',
+                    iconfont: ''
+                },
+            },
+        },
+    },
+    // antd
+    {
+        path: '/antd',
+        name: 'antd',
+        meta: {
+            title: 'Ant Design Vue',
+            menu: {
+                icon: {
+                    type: '',
+                    iconfont: ''
+                },
+                children: antd
+            },
+        },
+    },
+    // elementUI
+    {
+        path: '/elementUI',
+        name: 'elementUI',
+        meta: {
+            title: 'element-plus',
+            menu: {
+                icon: {
+                    type: '',
+                    iconfont: ''
+                },
+                children: elementUI
+            },
+        },
+    },
+    // HTML
+    {
+        path: '/HTML',
+        name: 'HTML',
+        meta: {
+            title: 'HTML',
+            menu: {
+                icon: {
+                    type: '',
+                    iconfont: ''
+                },
+                children: HTML
+            },
+        },
+    },
+    // CSS
+    {
+        path: '/CSS',
+        name: 'CSS',
+        meta: {
+            title: 'CSS',
+            menu: {
+                icon: {
+                    type: '',
+                    iconfont: ''
+                },
+                children: CSS
+            },
+        },
+    },
+    // Javascript
+    {
+        path: '/JavaScript',
+        name: 'JavaScript',
+        meta: {
+            title: 'JavaScript',
+            menu: {
+                icon: {
+                    type: '',
+                    iconfont: ''
+                },
+                children: JavaScript
+            },
+        },
+    },
+    // VUE
+    {
+        path: '/VUE',
+        name: 'VUE',
+        meta: {
+            title: 'VUE',
+            menu: {
+                icon: {
+                    type: '',
+                    iconfont: ''
+                },
+                children: VUE
+            },
+        },
+    },
+    // 项目配置
+    {
+        path: '/configs',
+        name: 'configs',
+        meta: {
+            title: '项目配置',
+            menu: {
+                icon: {
+                    type: '',
+                    iconfont: ''
+                },
+                children: configs
+            },
+        },
+    },
+];
+
 const routes = [{
     path: '/',
-    name: '首页',
-    component: () => import('../views/layout/index.vue'),
-    redirect: {name: 'Hello'},
+    name: 'index',
+    component: Layout,
+    redirect: {name: 'main'},
     children: [
         {
-            path:'hello',
-            name: 'Hello',
-            component: () => import('../components/HelloWorld.vue')
-        }
+            path:'main',
+            name: 'main',
+            component: mainPage
+        },
+        ...antd,
+        ...elementUI,
+        ...HTML,
+        ...CSS,
+        ...JavaScript,
+        ...VUE,
+        ...configs,
+        { 
+            path: '/:pathMatch(.*)*',
+            name: 'NotFound',
+            component: notFound
+        },
     ]
 }];
 
-export default routes;
+export {menuRoutes, routes};

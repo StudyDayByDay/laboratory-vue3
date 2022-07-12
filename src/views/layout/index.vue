@@ -1,49 +1,28 @@
 <template>
   <div class="layout">
       <div class="layout-header">
-          <div class="layout-header-title">kun的网站</div>
+          <div class="layout-header-title">集合</div>
           <div class="layout-header-content">
-              <a-menu
-                v-model:selectedKeys="selectedKeys"
-                style="width: 256px"
-                mode="inline"
-                :open-keys="openKeys"
-                @openChange="onOpenChange"
-                >
-                <a-sub-menu key="sub1">
-                    <template #icon>
-                    <MailOutlined />
+              <a-menu v-model:selectedKeys="selectedKeys" style="width: 256px" mode="inline" :open-keys="openKeys" @openChange="onOpenChange">
+                <template v-for="item in menus" :key="item.key">
+                    <template v-if="!item.children">
+                        <a-menu-item :key="item.key">
+                            <template #icon>
+                                <PieChartOutlined />
+                            </template>
+                            {{ item.title }}
+                        </a-menu-item>
                     </template>
-                    <template #title>Navigation One</template>
-                    <a-menu-item key="1">Option 1</a-menu-item>
-                    <a-menu-item key="2">Option 2</a-menu-item>
-                    <a-menu-item key="3">Option 3</a-menu-item>
-                    <a-menu-item key="4">Option 4</a-menu-item>
-                </a-sub-menu>
-                <a-sub-menu key="sub2">
-                    <template #icon></template>
-                    <template #title>
-                    <AppstoreOutlined />
-                    Navigation Two
+                    <template v-else>
+                        <a-sub-menu :key="item.key" :title="item.title">
+                            <template #icon>
+                                <MailOutlined />
+                            </template>
+                            <a-menu-item v-for="(ite) in item.children" :key="ite.key">{{ite.title}}</a-menu-item>
+                        </a-sub-menu>
                     </template>
-                    <a-menu-item key="5">Option 5</a-menu-item>
-                    <a-menu-item key="6">Option 6</a-menu-item>
-                    <a-sub-menu key="sub3" title="Submenu">
-                    <a-menu-item key="7">Option 7</a-menu-item>
-                    <a-menu-item key="8">Option 8</a-menu-item>
-                    </a-sub-menu>
-                </a-sub-menu>
-                <a-sub-menu key="sub4">
-                    <template #icon>
-                    <SettingOutlined />
-                    </template>
-                    <template #title>Navigation Three</template>
-                    <a-menu-item key="9">Option 9</a-menu-item>
-                    <a-menu-item key="10">Option 10</a-menu-item>
-                    <a-menu-item key="11">Option 11</a-menu-item>
-                    <a-menu-item key="12">Option 12</a-menu-item>
-                </a-sub-menu>
-                </a-menu>
+                </template>
+              </a-menu>
           </div>
       </div>
       <div class="layout-content">
@@ -54,21 +33,20 @@
 
 <script setup>
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
+import {routesToMenus} from '@utils/menu.js';
+import {menuRoutes} from '@/routers/routes.js';
 
-const state = ref({
-    rootSubmenuKeys: ['sub1', 'sub2', 'sub4'],
-    openKeys: ['sub1'],
-    selectedKeys: [],
-});
-
-const onOpenChange = openKeys => {
-    const latestOpenKey = openKeys.find(key => state.openKeys.indexOf(key) === -1);
-
-    if (state.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-    state.openKeys = openKeys;
+const menus = routesToMenus(menuRoutes);
+const rootSubmenuKeys = ref(menus.map(ite => ite.key));
+const openKeys = ref([]);
+const selectedKeys = ref(['main']);
+const onOpenChange = e => {
+    const latestOpenKey = e.find(key => openKeys.value.indexOf(key) === -1);
+    if (rootSubmenuKeys.value.indexOf(latestOpenKey) === -1) {
+        openKeys.value = e;
     } else {
-    state.openKeys = latestOpenKey ? [latestOpenKey] : [];
+        openKeys.value = latestOpenKey ? [latestOpenKey] : [];
     }
 };
 </script>
@@ -83,18 +61,18 @@ const onOpenChange = openKeys => {
 }
 
 .layout .layout-header {
-    background-color: pink;
+    /* background-color: pink; */
 }
 
 .layout .layout-header .layout-header-title {
     height: 32px;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 .layout .layout-header .layout-header-content {
     height: calc(100% - 32px);
 }
 .layout .layout-content {
-    background-color: #9e3b3b;
+    background-color: #f6f2f2;
 }
 </style>

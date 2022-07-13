@@ -10,7 +10,7 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
     nProgress.start();
-    console.log(to, 'to');
+    document.title = to.meta.title;
     return true;
 });
 

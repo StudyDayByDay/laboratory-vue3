@@ -74,7 +74,7 @@ const configs = [
     {
         path: '/esLint',
         name: 'esLint',
-        component: () => import('@views/VUE/esLint.vue'),
+        component: () => import('@views/configs/esLint.vue'),
         meta: {
             title: 'esLint'
         },
@@ -94,8 +94,8 @@ const menuRoutes = [
             title: '主页',
             menu: {
                 icon: {
-                    type: '',
-                    iconfont: ''
+                    type: 'iconfont',
+                    iconfont: 'iconMe-shouye'
                 },
             },
         },
@@ -108,8 +108,8 @@ const menuRoutes = [
             title: 'Ant Design Vue',
             menu: {
                 icon: {
-                    type: '',
-                    iconfont: ''
+                    type: 'iconfont',
+                    iconfont: 'iconMe-antdesign'
                 },
                 children: antd
             },
@@ -123,8 +123,8 @@ const menuRoutes = [
             title: 'element-plus',
             menu: {
                 icon: {
-                    type: '',
-                    iconfont: ''
+                    type: 'iconfont',
+                    iconfont: 'iconMe-elment'
                 },
                 children: elementUI
             },
@@ -138,8 +138,8 @@ const menuRoutes = [
             title: 'HTML',
             menu: {
                 icon: {
-                    type: '',
-                    iconfont: ''
+                    type: 'iconfont',
+                    iconfont: 'iconMe-html5'
                 },
                 children: HTML
             },
@@ -153,8 +153,8 @@ const menuRoutes = [
             title: 'CSS',
             menu: {
                 icon: {
-                    type: '',
-                    iconfont: ''
+                    type: 'iconfont',
+                    iconfont: 'iconMe-css'
                 },
                 children: CSS
             },
@@ -168,8 +168,8 @@ const menuRoutes = [
             title: 'JavaScript',
             menu: {
                 icon: {
-                    type: '',
-                    iconfont: ''
+                    type: 'iconfont',
+                    iconfont: 'iconMe-javascript'
                 },
                 children: JavaScript
             },
@@ -183,8 +183,8 @@ const menuRoutes = [
             title: 'VUE',
             menu: {
                 icon: {
-                    type: '',
-                    iconfont: ''
+                    type: 'iconfont',
+                    iconfont: 'iconMe-vue'
                 },
                 children: VUE
             },
@@ -198,8 +198,8 @@ const menuRoutes = [
             title: '项目配置',
             menu: {
                 icon: {
-                    type: '',
-                    iconfont: ''
+                    type: 'iconfont',
+                    iconfont: 'iconMe-config'
                 },
                 children: configs
             },
@@ -216,7 +216,10 @@ const routes = [{
         {
             path:'main',
             name: 'main',
-            component: mainPage
+            component: mainPage,
+            meta: {
+                title: '主页'
+            }
         },
         ...antd,
         ...elementUI,
@@ -228,7 +231,10 @@ const routes = [{
         { 
             path: '/:pathMatch(.*)*',
             name: 'NotFound',
-            component: notFound
+            component: notFound,
+            meta: {
+                title: '404'
+            }
         },
     ]
 }];

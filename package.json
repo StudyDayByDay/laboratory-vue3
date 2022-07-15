@@ -11,6 +11,7 @@
     "ant-design-vue": "^3.2.4",
     "esbuild-windows-64": "^0.14.39",
     "nprogress": "^0.2.0",
+    "pinia": "^2.0.16",
     "vue": "^3.2.25",
     "vue-router": "4"
   },

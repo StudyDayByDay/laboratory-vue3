@@ -29,42 +29,42 @@
 </template>
 
 <script setup>
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
-import { reactive, ref, watchEffect } from 'vue';
+import {ref, watchEffect} from 'vue';
 import {routesToMenus} from '@utils/menu.js';
 import {menuRoutes} from '@/routers/routes.js';
-import { useRouter, useRoute } from 'vue-router';
+import {useRouter, useRoute} from 'vue-router';
 
 const router = useRouter();
 const route = useRoute();
 const menus = routesToMenus(menuRoutes);
-const rootSubmenuKeys = ref(menus.map(ite => ite.key));
+const rootSubmenuKeys = ref(menus.map((ite) => ite.key));
 const openKeys = ref([]);
 const selectedKeys = ref([]);
 
 // 处理刷新逻辑
 watchEffect(() => {
-    selectedKeys.value.shift();
-    selectedKeys.value.push(route.name);
-    document.title = route.meta.title;
+  selectedKeys.value.shift();
+  selectedKeys.value.push(route.name);
+  document.title = route.meta.title;
+  console.log(111);
 });
 // 导航打开逻辑
-const onOpenChange = e => {
-    const latestOpenKey = e.find(key => openKeys.value.indexOf(key) === -1);
-    if (rootSubmenuKeys.value.indexOf(latestOpenKey) === -1) {
-        openKeys.value = e;
-    } else {
-        openKeys.value = latestOpenKey ? [latestOpenKey] : [];
-    }
+const onOpenChange = (e) => {
+  const latestOpenKey = e.find((key) => openKeys.value.indexOf(key) === -1);
+  if (rootSubmenuKeys.value.indexOf(latestOpenKey) === -1) {
+    openKeys.value = e;
+  } else {
+    openKeys.value = latestOpenKey ? [latestOpenKey] : [];
+  }
 };
 // 点击菜单
 const menuClick = (e) => {
     // router要写在外面
-    if (e.key !== route.name) {
-        router.push({
-            name: e.key
-        });
-    }
+  if (e.key !== route.name) {
+    router.push({
+      name: e.key
+    });
+  }
 };
 </script>
 

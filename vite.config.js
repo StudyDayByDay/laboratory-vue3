@@ -1,10 +1,20 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+/* eslint-disable no-undef */
+import {defineConfig} from 'vite';
+import vue from '@vitejs/plugin-vue';
 import {resolve} from 'path';
+import eslintPlugin from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    eslintPlugin({
+      // 增加下面的配置项,这样在运行时就能检查eslint规范
+      include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue'],
+      // 为啥我这里的exclude没起作用
+      exclude: ['/*.js', '/node_modules/'],
+    })
+  ],
   resolve: {
     // 别名配置
     alias: {
@@ -23,4 +33,4 @@ export default defineConfig({
     // 启动自动打开页面
     open: true,
   }
-})
+});

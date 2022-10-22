@@ -85,6 +85,17 @@ const configs = [
     // babel
 ];
 
+const plugins = [
+  {
+    path: '/dhtmlxGantt',
+    name: 'dhtmlxGantt',
+    component: () => import('@views/plugins/dhtmlxGantt.vue'),
+    meta: {
+      title: 'dhtmlxGantt'
+    },
+  },
+];
+
 const menuRoutes = [
     // main
   {
@@ -205,6 +216,21 @@ const menuRoutes = [
       },
     },
   },
+  // 插件
+  {
+    path: '/plugins',
+    name: 'plugins',
+    meta: {
+      title: '各种插件',
+      menu: {
+        icon: {
+          type: 'iconfont',
+          iconfont: 'iconMe-chajian1'
+        },
+        children: plugins
+      },
+    },
+  },
 ];
 
 const routes = [{
@@ -228,6 +254,7 @@ const routes = [{
     ...JavaScript,
     ...VUE,
     ...configs,
+    ...plugins,
     { 
       path: '/:pathMatch(.*)*',
       name: 'NotFound',

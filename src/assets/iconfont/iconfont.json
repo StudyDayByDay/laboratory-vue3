@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5244045",
+      "name": "插件",
+      "font_class": "chajian1",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
+    },
+    {
       "icon_id": "18166598",
       "name": "饿了么",
       "font_class": "elment",

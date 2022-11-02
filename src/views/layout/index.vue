@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
       <div class="layout-header">
-            <a-menu v-model:selectedKeys="selectedKeys" style="width: 256px" mode="inline" :open-keys="openKeys" @openChange="onOpenChange" @click="menuClick">
+            <a-menu v-model:selectedKeys="selectedKeys" mode="inline" :open-keys="openKeys" :inline-collapsed="open" @openChange="onOpenChange" @click="menuClick">
                 <template v-for="item in menus" :key="item.key">
                     <template v-if="!item.children">
                         <a-menu-item :key="item.key">
@@ -23,7 +23,14 @@
             </a-menu>
       </div>
       <div class="layout-content">
+        <div class="layout-content-head">
+          <menu-fold-outlined @click="open =!open" v-if="open"/>
+          <menu-unfold-outlined @click="open =!open" v-else/>
+        </div>
+        <div class="layout-content-tag">2</div>
+        <div class="layout-content-main">
           <router-view></router-view>
+        </div>
       </div>
   </div>
 </template>
@@ -33,6 +40,7 @@ import {ref, watchEffect} from 'vue';
 import {routesToMenus} from '@utils/menu.js';
 import {menuRoutes} from '@/routers/routes.js';
 import {useRouter, useRoute} from 'vue-router';
+import {MenuFoldOutlined, MenuUnfoldOutlined} from '@ant-design/icons-vue';
 
 const router = useRouter();
 const route = useRoute();
@@ -40,6 +48,7 @@ const menus = routesToMenus(menuRoutes);
 const rootSubmenuKeys = ref(menus.map((ite) => ite.key));
 const openKeys = ref([]);
 const selectedKeys = ref([]);
+const open = ref(true);
 
 // 处理刷新逻辑
 watchEffect(() => {
@@ -75,13 +84,20 @@ const menuClick = (e) => {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 256px auto;
+    grid-template-columns: auto auto;
     grid-template-rows: 100%;
     &-header {
         user-select: none;
     }
     &-content {
-        background-color: #f6f2f2;
+      background-color: #f6f2f2;
+      &-head {
+        height: 48px;
+      }
+      &-tag {
+        height: 30px;
+      }
+      &-main {}
     }
 }
 </style>

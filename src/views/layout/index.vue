@@ -1,7 +1,8 @@
 <template>
-  <div class="layout">
+  <div :class="['layout', open ? 'layout-open' : 'layout-close']">
       <div class="layout-header">
-            <a-menu v-model:selectedKeys="selectedKeys" mode="inline" :open-keys="openKeys" :inline-collapsed="open" @openChange="onOpenChange" @click="menuClick">
+            <div class="logo"></div>
+            <a-menu v-model:selectedKeys="selectedKeys" mode="inline" :open-keys="openKeys" :inline-collapsed="!open" @openChange="onOpenChange" @click="menuClick">
                 <template v-for="item in menus" :key="item.key">
                     <template v-if="!item.children">
                         <a-menu-item :key="item.key">
@@ -83,11 +84,14 @@ const menuClick = (e) => {
 .layout {
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: 100%;
+    // display: grid;
+    // grid-template-columns: 100px auto;
+    // grid-template-rows: 100%;
     &-header {
         user-select: none;
+        .logo {
+          height: 48px;
+        }
     }
     &-content {
       background-color: #f6f2f2;
@@ -100,4 +104,17 @@ const menuClick = (e) => {
       &-main {}
     }
 }
+
+.layout-open {
+  display: grid;
+  grid-template-columns: 210px auto;
+  grid-template-rows: 100%;
+}
+
+.layout-close {
+  display: grid;
+  grid-template-columns: 48px auto;
+  grid-template-rows: 100%;
+}
+
 </style>

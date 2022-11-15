@@ -1,7 +1,7 @@
 <template>
   <div :class="['layout', open ? 'layout-open' : 'layout-close']">
       <div class="layout-header">
-            <div class="logo"></div>
+            <div class="logo">logo</div>
             <a-menu v-model:selectedKeys="selectedKeys" mode="inline" :open-keys="openKeys" :inline-collapsed="!open" @openChange="onOpenChange" @click="menuClick">
                 <template v-for="item in menus" :key="item.key">
                     <template v-if="!item.children">
@@ -56,7 +56,6 @@ watchEffect(() => {
   selectedKeys.value.shift();
   selectedKeys.value.push(route.name);
   document.title = route.meta.title;
-  console.log(111);
 });
 // 导航打开逻辑
 const onOpenChange = (e) => {
@@ -101,7 +100,9 @@ const menuClick = (e) => {
       &-tag {
         height: 30px;
       }
-      &-main {}
+      &-main {
+        height: calc(100% - 78px);
+      }
     }
 }
 
@@ -117,4 +118,8 @@ const menuClick = (e) => {
   grid-template-rows: 100%;
 }
 
+// TODO：后续要把这里提到css部分去
+:deep(.ant-menu.ant-menu-inline-collapsed) {
+  width: 48px;
+}
 </style>

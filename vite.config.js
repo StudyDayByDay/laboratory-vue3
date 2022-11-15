@@ -27,7 +27,12 @@ export default defineConfig({
       '@views': resolve(__dirname, 'src/views'),
     },
     // 扩展名称省略
-    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+  },
+  esbuild: {
+    jsxFactory: 'h',
+    jsxFragment: 'Fragment',
+    jsxInject: "import { h } from 'vue';"
   },
   server: {
     // 启动自动打开页面

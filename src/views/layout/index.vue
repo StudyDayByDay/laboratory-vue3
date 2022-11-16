@@ -102,6 +102,7 @@ const menuClick = (e) => {
       }
       &-main {
         height: calc(100% - 78px);
+        padding: 10px;
       }
     }
 }

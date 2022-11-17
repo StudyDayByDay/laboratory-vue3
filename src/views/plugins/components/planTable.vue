@@ -4,13 +4,13 @@
             <div :class="['icon', 'iconfont', item.icon]"></div>
             <div class="from">
                 <div class="from-item">
-                    <span>计划开始时间：<a-date-picker v-model:value="item.planStart" :allowClear="false"/></span>
-                    <span>计划结束时间：<a-date-picker v-model:value="item.planEnd" :allowClear="false"/></span>
+                    <span>计划开始时间：<a-date-picker v-model:value="item.planStart" :allowClear="false" :disabledDate="disabledDate"/></span>
+                    <span>计划结束时间：<a-date-picker v-model:value="item.planEnd" :allowClear="false" :disabledDate="disabledDate"/></span>
                     <span>负责人【<span style="color: red;">{{item.chargeMan}}</span>】</span>
                 </div>
                 <div class="from-item">
-                    <span>实际开始时间：<a-date-picker v-model:value="item.actualStart" :allowClear="false"/></span>
-                    <span>实际结束时间：<a-date-picker v-model:value="item.actualEnd" :allowClear="false"/></span>
+                    <span>实际开始时间：<a-date-picker v-model:value="item.actualStart" :allowClear="false" :disabledDate="disabledDate"/></span>
+                    <span>实际结束时间：<a-date-picker v-model:value="item.actualEnd" :allowClear="false" :disabledDate="disabledDate"/></span>
                     <a-select ref="select" v-model:value="item.role" placeholder="请选择" style="width: 120px">
                         <a-select-option value="admin">管理员</a-select-option>
                     </a-select>
@@ -21,10 +21,16 @@
 </template>
 
 <script setup>
-import {reactive} from 'vue';
+import dayjs from 'dayjs';
 
 // eslint-disable-next-line vue/no-setup-props-destructure
-const {formData} = defineProps(['formData']);
+const {formData, startDate, endDate} = defineProps(['formData', 'startDate', 'endDate']);
+const disabledDate = (current) => {
+  console.log(endDate, current, '123');
+      // Can not select days before today and today
+//   return current < dayjs(startDate).date() && current > dayjs(endDate).date();
+  return current < dayjs(startDate).subtract(1, 'day').endOf('day') || current > dayjs(endDate).endOf('day');
+};
 </script>
 
 <style lang="less" scoped>

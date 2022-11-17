@@ -17,7 +17,7 @@ import {reactive, ref, defineProps, onMounted} from 'vue';
 import {basicData} from '../utils/data';
 
 
-const props = defineProps(['formData']);
+const props = defineProps(['formData', 'startDate', 'endDate']);
 // ref
 const ganttRef = ref(null);
 // 时间type
@@ -25,6 +25,9 @@ const time = ref('day');
 // 数据
 const tasks = reactive({data: []});
 const ganttConfig = () => {
+  // 设置时间范围
+  gantt.config.start_date = new Date(props.startDate.replace(/-/g,  '/'));
+  gantt.config.end_date = new Date(props.endDate.replace(/-/g,  '/'));
   // 显示连线
   gantt.config.show_links = true;
   // 显示进度
@@ -47,10 +50,10 @@ const ganttConfig = () => {
   // };
   // 提示框内容
   gantt.templates.tooltip_text = (start, end, task) => {
-    return '<b>任务内容:</b>' + task.text +
-        '<br/><b>计划开始:</b> ' + task.start_date +
-        '<br/><b>持续时间:</b> ' + task.duration +
-        '<br/><b>进度:</b> ' + task.progress;
+    return '<b>步骤:</b>' + task.text +
+        '<br/><b>负责人:</b> ' + (task.role || '') +
+        '<br/><b>开始时间:</b> ' + moment(task.start_date).format('YYYY-MM-DD') +
+        '<br/><b>结束时间:</b> ' + moment(task.end_date).format('YYYY-MM-DD');
   };
   // 设置周末隐藏，次功能仅在专业版可用
   // gantt.ignore_time = (date) => {
@@ -80,21 +83,29 @@ const ganttConfig = () => {
   // gantt.config.readonly = true;
   // 是否显示左侧树表格
   gantt.config.show_grid = true;
-  // 表格列设置
+  // 表格列设置  https://docs.dhtmlx.com/gantt/api__gantt_columns_config.html
   gantt.config.columns = [
-    {name: 'text', label: '步骤', width: '120', align: 'center'},
-    {name: 'start_date', label: '计划开始', width: '100', align: 'center'},
-    {name: 'duration', label: '持续时间', width: '100', align: 'center'},
-    {name: 'progress', label: '进度', width: '100', align: 'center'},
+    {name: 'text', label: '步骤', tree: true, width: '150', align: 'center'},
+    // {name: 'start_date', label: '开始', width: '100', align: 'center'},
+    // {name: 'end_date', label: '结束', width: '100', align: 'center'},
+    // {name: 'duration', label: '持续时间', width: '100', align: 'center'},
+    // {name: 'progress', label: '进度', width: '100', align: 'center'},
+    {name: 'role', label: '负责人', width: '100', align: 'center'},
   ];
   // 任务条上的文字大小 以及取消border自带样式
   gantt.templates.task_class = function () {
     return 'firstLevelTask';
   };
+  // 设置任务栏颜色 https://docs.dhtmlx.com/gantt/api__gantt_task_class_template.html
+  gantt.templates.task_class = function (start, end, task) {
+    console.log(moment(start).format('YYYY-MM-DD'), moment(end).format('YYYY-MM-DD'), task, 'task');
+    return task?.color ?? '';
+  };
   // 初始化
   gantt.init(ganttRef.value);
       // 数据解析
-  gantt.parse(basicData);
+  // gantt.parse(basicData);
+  gantt.parse(dataFormat(props.formData));
 };
 
 const timeChange = (e) => {
@@ -144,9 +155,51 @@ const timeChange = (e) => {
   // 初始化
   gantt.init(ganttRef.value);
       // 数据解析
-  gantt.parse(basicData);
+  gantt.parse(dataFormat(props.formData));
 };
 
+const dataFormat = (data) => {
+  const ganttObj = {
+    data: [],
+    links: []
+  };
+  data.forEach((item, index) => {
+    // 计划是否大于实际
+    const color = item.planEnd.diff(item.planStart, 'd') > item.actualEnd.diff(item.actualStart, 'd') ? 'contain' : 'over';
+    const planData = {
+      id: 'planData' + index,
+      text: item.chargeMan,
+      start_date: item.planStart.format('DD-MM-YYYY'),
+      end_date: item.planEnd.format('DD-MM-YYYY'),
+      progress: 0.4,
+      open: true,
+      role: item.role,
+    };
+    const actualData = {
+      id: 'actualData' + index,
+      text: '实际',
+      start_date: item.actualStart.format('DD-MM-YYYY'),
+      end_date: item.actualEnd.format('DD-MM-YYYY'),
+      progress: 0.4,
+      open: true,
+      role: item.role,
+      parent: planData.id,
+      color,
+    };
+    const link = {
+      id: 'planLink' + index,
+      source: planData.id,
+      target: actualData.id,
+      type: '1'
+    };
+
+    ganttObj.data.push(planData);
+    ganttObj.data.push(actualData);
+    ganttObj.links.push(link);
+  });
+
+  return ganttObj;
+};
 onMounted(() => {
   ganttConfig();
 });
@@ -160,5 +213,13 @@ onMounted(() => {
 }
 .weekend{
     background: #bfbfbf;
+}
+
+.over {
+  background-color: #e43c59;
+}
+
+.contain {
+  background-color: #f57730;
 }
 </style>

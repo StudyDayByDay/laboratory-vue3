@@ -26,18 +26,19 @@ const time = ref('day');
 const tasks = reactive({data: []});
 const ganttConfig = () => {
   // 设置时间范围
-  gantt.config.start_date = new Date(props.startDate.replace(/-/g,  '/'));
-  gantt.config.end_date = new Date(props.endDate.replace(/-/g,  '/'));
+  // gantt.config.start_date = new Date(props.startDate.replace(/-/g,  '/'));
+  // gantt.config.end_date = new Date(props.endDate.replace(/-/g,  '/'));
   // 显示连线
   gantt.config.show_links = true;
   // 显示进度
   gantt.config.show_progress = true;
   // gantt.config.drag_progress = false;
-  gantt.plugins({marker: true, tooltip: true}); // 开启marker插件
+  // 开启marker插件
+  gantt.plugins({marker: true, tooltip: true});
   // 返回dateToStr函数，将本地时间转换成相应格式
   const dateToStr = gantt.date.date_to_str(gantt.config.task_date);
   const today = new Date();
-      // 添加固定时间线
+  // 添加固定时间线
   gantt.addMarker({
     start_date: today,
     css: 'today',
@@ -55,7 +56,7 @@ const ganttConfig = () => {
         '<br/><b>开始时间:</b> ' + moment(task.start_date).format('YYYY-MM-DD') +
         '<br/><b>结束时间:</b> ' + moment(task.end_date).format('YYYY-MM-DD');
   };
-  // 设置周末隐藏，次功能仅在专业版可用
+  // 设置周末隐藏，此功能仅在专业版可用
   // gantt.ignore_time = (date) => {
   //   if (date.getDay() === 0 || date.getDay() === 6) {
   //     return true;
@@ -79,7 +80,7 @@ const ganttConfig = () => {
   gantt.i18n.setLocale('cn');
   // 自适应甘特图的尺寸大小, 使得在不出现滚动条的情况下, 显示全部任务
   gantt.config.autosize = true;
-  // 只读模式
+  // 只读模式（用此模式就不能对图形进行编辑）
   // gantt.config.readonly = true;
   // 是否显示左侧树表格
   gantt.config.show_grid = true;
@@ -101,11 +102,6 @@ const ganttConfig = () => {
     console.log(moment(start).format('YYYY-MM-DD'), moment(end).format('YYYY-MM-DD'), task, 'task');
     return task?.color ?? '';
   };
-  // 初始化
-  gantt.init(ganttRef.value);
-      // 数据解析
-  // gantt.parse(basicData);
-  gantt.parse(dataFormat(props.formData));
 };
 
 const timeChange = (e) => {
@@ -152,10 +148,7 @@ const timeChange = (e) => {
     default:
       break;
   }
-  // 初始化
-  gantt.init(ganttRef.value);
-      // 数据解析
-  gantt.parse(dataFormat(props.formData));
+  ganttRender();
 };
 
 const dataFormat = (data) => {
@@ -200,8 +193,18 @@ const dataFormat = (data) => {
 
   return ganttObj;
 };
+
+
+const ganttRender = () => {
+  // 初始化
+  gantt.init(ganttRef.value);
+  // 数据解析
+  // gantt.parse(basicData);  可以导入基础数据进行演示查看
+  gantt.parse(dataFormat(props.formData));
+};
 onMounted(() => {
   ganttConfig();
+  ganttRender();
 });
 </script>
 

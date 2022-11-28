@@ -94,6 +94,14 @@ const plugins = [
       title: 'dhtmlxGantt'
     },
   },
+  {
+    path: '/v-draggable',
+    name: 'v-draggable',
+    component: () => import('@views/plugins/v-draggable.vue'),
+    meta: {
+      title: 'v-draggable'
+    },
+  },
 ];
 
 const menuRoutes = [

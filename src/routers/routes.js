@@ -102,6 +102,14 @@ const plugins = [
       title: 'v-draggable'
     },
   },
+  {
+    path: '/vue3-seamless-scroll',
+    name: 'vue3-seamless-scroll',
+    component: () => import('@views/plugins/vue3-seamless-scroll.vue'),
+    meta: {
+      title: 'vue3-seamless-scroll'
+    },
+  },
 ];
 
 const menuRoutes = [

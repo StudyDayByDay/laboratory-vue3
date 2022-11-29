@@ -16,9 +16,10 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.16",
     "sass": "^1.55.0",
+    "seamscroll": "^0.0.12",
     "vue": "^3.2.25",
     "vue-router": "4",
-    "vue-seamless-scroll": "^1.1.23",
+    "vue3-seamless-scroll": "^2.0.1",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {

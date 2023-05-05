@@ -43,9 +43,17 @@ const CSS = [
     name: 'animation',
     component: () => import('@views/CSS/animation.vue'),
     meta: {
-      title: '动画'
+      title: '下雨效果'
     },
-  }
+  },
+  {
+    path: '/bgword',
+    name: 'bgword',
+    component: () => import('@views/CSS/bgword.vue'),
+    meta: {
+      title: '背景文字效果'
+    },
+  },
 ];
 
 const JavaScript = [

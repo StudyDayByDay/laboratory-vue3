@@ -75,7 +75,23 @@ const VUE = [
     meta: {
       title: 'vue-router'
     },
-  }
+  },
+  {
+    path: '/extends',
+    name: 'extends',
+    component: () => import('@views/VUE/vueExtends.vue'),
+    meta: {
+      title: 'extends使用'
+    },
+  },
+  {
+    path: '/events',
+    name: 'events',
+    component: () => import('@views/VUE/vueEvent.vue'),
+    meta: {
+      title: '事件透传'
+    },
+  },
 ];
 
 const configs = [

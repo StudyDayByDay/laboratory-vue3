@@ -12,7 +12,7 @@ const nums = computed(() => {
 });
 </script>
 
-<style>
+<style scoped>
 .star {
   display: flex;
   justify-content: space-between;

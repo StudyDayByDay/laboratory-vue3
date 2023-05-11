@@ -47,11 +47,27 @@ const CSS = [
     },
   },
   {
+    path: '/animationPlus',
+    name: 'animationPlus',
+    component: () => import('@views/CSS/animationPlus.vue'),
+    meta: {
+      title: '下雨效果Plus'
+    },
+  },
+  {
     path: '/bgword',
     name: 'bgword',
     component: () => import('@views/CSS/bgword.vue'),
     meta: {
       title: '背景文字效果'
+    },
+  },
+  {
+    path: '/pictureView',
+    name: 'pictureView',
+    component: () => import('@views/CSS/pictureView.vue'),
+    meta: {
+      title: '图片预览效果'
     },
   },
 ];

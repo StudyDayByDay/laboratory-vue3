@@ -13,7 +13,7 @@
 .bg {
     width: 100%;
     height: 100%;
-    background: url('@assets/bear.jpg') no-repeat center/cover;
+    background: url('@assets/images/bear.jpg') no-repeat center/cover;
 }
 /* 蒙层作用 */
 .modal {
@@ -31,7 +31,7 @@ h1 {
     text-stroke: 1px #fff;
     /* 白色描边 */
     -webkit-text-stroke: 1px #fff;
-    background: url('@assets/bear.jpg') no-repeat center/cover;
+    background: url('@assets/images/bear.jpg') no-repeat center/cover;
     /* 背景限制到文字区域 */
     -webkit-background-clip: text;
     color: transparent;

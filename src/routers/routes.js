@@ -70,6 +70,30 @@ const CSS = [
       title: '图片预览效果'
     },
   },
+  {
+    path: '/fluid',
+    name: 'fluid',
+    component: () => import('@views/CSS/fluid.vue'),
+    meta: {
+      title: '流动布局效果'
+    },
+  },
+  {
+    path: '/button',
+    name: 'button',
+    component: () => import('@views/CSS/button.vue'),
+    meta: {
+      title: '气死前端的按钮？'
+    },
+  },
+  {
+    path: '/dingding',
+    name: 'dingding',
+    component: () => import('@views/CSS/dingding.vue'),
+    meta: {
+      title: '钉钉官网效果'
+    },
+  },
 ];
 
 const JavaScript = [
@@ -106,6 +130,14 @@ const VUE = [
     component: () => import('@views/VUE/vueEvent.vue'),
     meta: {
       title: '事件透传'
+    },
+  },
+  {
+    path: '/render',
+    name: 'render',
+    component: () => import('@views/VUE/render.vue'),
+    meta: {
+      title: 'render函数'
     },
   },
 ];

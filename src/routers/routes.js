@@ -10,9 +10,9 @@ const antd = [
     name: 'table',
     component: () => import('@views/antd/table.vue'),
     meta: {
-      title: '表格'
+      title: '表格',
     },
-  }
+  },
 ];
 
 const elementUI = [
@@ -21,9 +21,9 @@ const elementUI = [
     name: 'tree',
     component: () => import('@views/elementUI/tree.vue'),
     meta: {
-      title: '树'
+      title: '树',
     },
-  }
+  },
 ];
 
 const HTML = [
@@ -32,9 +32,9 @@ const HTML = [
     name: 'newElement',
     component: () => import('@views/HTML/newElement.vue'),
     meta: {
-      title: '新元素'
+      title: '新元素',
     },
-  }
+  },
 ];
 
 const CSS = [
@@ -43,7 +43,7 @@ const CSS = [
     name: 'animation',
     component: () => import('@views/CSS/animation.vue'),
     meta: {
-      title: '下雨效果'
+      title: '下雨效果',
     },
   },
   {
@@ -51,7 +51,7 @@ const CSS = [
     name: 'animationPlus',
     component: () => import('@views/CSS/animationPlus.vue'),
     meta: {
-      title: '下雨效果Plus'
+      title: '下雨效果Plus',
     },
   },
   {
@@ -59,7 +59,7 @@ const CSS = [
     name: 'bgword',
     component: () => import('@views/CSS/bgword.vue'),
     meta: {
-      title: '背景文字效果'
+      title: '背景文字效果',
     },
   },
   {
@@ -67,7 +67,7 @@ const CSS = [
     name: 'pictureView',
     component: () => import('@views/CSS/pictureView.vue'),
     meta: {
-      title: '图片预览效果'
+      title: '图片预览效果',
     },
   },
   {
@@ -75,7 +75,7 @@ const CSS = [
     name: 'fluid',
     component: () => import('@views/CSS/fluid.vue'),
     meta: {
-      title: '流动布局效果'
+      title: '流动布局效果',
     },
   },
   {
@@ -83,7 +83,7 @@ const CSS = [
     name: 'button',
     component: () => import('@views/CSS/button.vue'),
     meta: {
-      title: '气死前端的按钮？'
+      title: '气死前端的按钮？',
     },
   },
   {
@@ -91,7 +91,7 @@ const CSS = [
     name: 'dingding',
     component: () => import('@views/CSS/dingding.vue'),
     meta: {
-      title: '钉钉官网效果'
+      title: '钉钉官网效果',
     },
   },
 ];
@@ -102,9 +102,17 @@ const JavaScript = [
     name: 'class',
     component: () => import('@views/JavaScript/class.vue'),
     meta: {
-      title: '类'
+      title: '类',
     },
-  }
+  },
+  {
+    path: '/file',
+    name: 'file',
+    component: () => import('@views/JavaScript/file.vue'),
+    meta: {
+      title: '文件',
+    },
+  },
 ];
 
 const VUE = [
@@ -113,7 +121,7 @@ const VUE = [
     name: 'vue-router',
     component: () => import('@views/VUE/vueRouter.vue'),
     meta: {
-      title: 'vue-router'
+      title: 'vue-router',
     },
   },
   {
@@ -121,7 +129,7 @@ const VUE = [
     name: 'extends',
     component: () => import('@views/VUE/vueExtends.vue'),
     meta: {
-      title: 'extends使用'
+      title: 'extends使用',
     },
   },
   {
@@ -129,7 +137,7 @@ const VUE = [
     name: 'events',
     component: () => import('@views/VUE/vueEvent.vue'),
     meta: {
-      title: '事件透传'
+      title: '事件透传',
     },
   },
   {
@@ -137,7 +145,7 @@ const VUE = [
     name: 'render',
     component: () => import('@views/VUE/render.vue'),
     meta: {
-      title: 'render函数'
+      title: 'render函数',
     },
   },
 ];
@@ -148,13 +156,13 @@ const configs = [
     name: 'esLint',
     component: () => import('@views/configs/esLint.vue'),
     meta: {
-      title: 'esLint'
+      title: 'esLint',
     },
   },
-    // vite
-    // vue-cli
-    // stylelint
-    // babel
+  // vite
+  // vue-cli
+  // stylelint
+  // babel
 ];
 
 const plugins = [
@@ -163,7 +171,7 @@ const plugins = [
     name: 'dhtmlxGantt',
     component: () => import('@views/plugins/dhtmlxGantt.vue'),
     meta: {
-      title: 'dhtmlxGantt'
+      title: 'dhtmlxGantt',
     },
   },
   {
@@ -171,7 +179,7 @@ const plugins = [
     name: 'v-draggable',
     component: () => import('@views/plugins/v-draggable.vue'),
     meta: {
-      title: 'v-draggable'
+      title: 'v-draggable',
     },
   },
   {
@@ -179,13 +187,13 @@ const plugins = [
     name: 'vue3-seamless-scroll',
     component: () => import('@views/plugins/vue3-seamless-scroll.vue'),
     meta: {
-      title: 'vue3-seamless-scroll'
+      title: 'vue3-seamless-scroll',
     },
   },
 ];
 
 const menuRoutes = [
-    // main
+  // main
   {
     path: '/main',
     name: 'main',
@@ -194,12 +202,12 @@ const menuRoutes = [
       menu: {
         icon: {
           type: 'iconfont',
-          iconfont: 'iconMe-shouye'
+          iconfont: 'iconMe-shouye',
         },
       },
     },
   },
-    // antd
+  // antd
   {
     path: '/antd',
     name: 'antd',
@@ -208,13 +216,13 @@ const menuRoutes = [
       menu: {
         icon: {
           type: 'iconfont',
-          iconfont: 'iconMe-antdesign'
+          iconfont: 'iconMe-antdesign',
         },
-        children: antd
+        children: antd,
       },
     },
   },
-    // elementUI
+  // elementUI
   {
     path: '/elementUI',
     name: 'elementUI',
@@ -223,13 +231,13 @@ const menuRoutes = [
       menu: {
         icon: {
           type: 'iconfont',
-          iconfont: 'iconMe-elment'
+          iconfont: 'iconMe-elment',
         },
-        children: elementUI
+        children: elementUI,
       },
     },
   },
-    // HTML
+  // HTML
   {
     path: '/HTML',
     name: 'HTML',
@@ -238,13 +246,13 @@ const menuRoutes = [
       menu: {
         icon: {
           type: 'iconfont',
-          iconfont: 'iconMe-html5'
+          iconfont: 'iconMe-html5',
         },
-        children: HTML
+        children: HTML,
       },
     },
   },
-    // CSS
+  // CSS
   {
     path: '/CSS',
     name: 'CSS',
@@ -253,13 +261,13 @@ const menuRoutes = [
       menu: {
         icon: {
           type: 'iconfont',
-          iconfont: 'iconMe-css'
+          iconfont: 'iconMe-css',
         },
-        children: CSS
+        children: CSS,
       },
     },
   },
-    // Javascript
+  // Javascript
   {
     path: '/JavaScript',
     name: 'JavaScript',
@@ -268,13 +276,13 @@ const menuRoutes = [
       menu: {
         icon: {
           type: 'iconfont',
-          iconfont: 'iconMe-javascript'
+          iconfont: 'iconMe-javascript',
         },
-        children: JavaScript
+        children: JavaScript,
       },
     },
   },
-    // VUE
+  // VUE
   {
     path: '/VUE',
     name: 'VUE',
@@ -283,13 +291,13 @@ const menuRoutes = [
       menu: {
         icon: {
           type: 'iconfont',
-          iconfont: 'iconMe-vue'
+          iconfont: 'iconMe-vue',
         },
-        children: VUE
+        children: VUE,
       },
     },
   },
-    // 项目配置
+  // 项目配置
   {
     path: '/configs',
     name: 'configs',
@@ -298,9 +306,9 @@ const menuRoutes = [
       menu: {
         icon: {
           type: 'iconfont',
-          iconfont: 'iconMe-config'
+          iconfont: 'iconMe-config',
         },
-        children: configs
+        children: configs,
       },
     },
   },
@@ -313,45 +321,47 @@ const menuRoutes = [
       menu: {
         icon: {
           type: 'iconfont',
-          iconfont: 'iconMe-chajian1'
+          iconfont: 'iconMe-chajian1',
         },
-        children: plugins
+        children: plugins,
       },
     },
   },
 ];
 
-const routes = [{
-  path: '/',
-  name: 'index',
-  component: Layout,
-  redirect: {name: 'main'},
-  children: [
-    {
-      path: 'main',
-      name: 'main',
-      component: mainPage,
-      meta: {
-        title: '主页'
-      }
-    },
-    ...antd,
-    ...elementUI,
-    ...HTML,
-    ...CSS,
-    ...JavaScript,
-    ...VUE,
-    ...configs,
-    ...plugins,
-    { 
-      path: '/:pathMatch(.*)*',
-      name: 'NotFound',
-      component: notFound,
-      meta: {
-        title: '404'
-      }
-    },
-  ]
-}];
+const routes = [
+  {
+    path: '/',
+    name: 'index',
+    component: Layout,
+    redirect: {name: 'main'},
+    children: [
+      {
+        path: 'main',
+        name: 'main',
+        component: mainPage,
+        meta: {
+          title: '主页',
+        },
+      },
+      ...antd,
+      ...elementUI,
+      ...HTML,
+      ...CSS,
+      ...JavaScript,
+      ...VUE,
+      ...configs,
+      ...plugins,
+      {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: notFound,
+        meta: {
+          title: '404',
+        },
+      },
+    ],
+  },
+];
 
 export {menuRoutes, routes};

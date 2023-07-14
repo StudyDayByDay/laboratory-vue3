@@ -113,6 +113,14 @@ const JavaScript = [
       title: '文件',
     },
   },
+  {
+    path: '/fileUpload',
+    name: 'fileUpload',
+    component: () => import('@views/JavaScript/fileUpload.vue'),
+    meta: {
+      title: '文件上传',
+    },
+  },
 ];
 
 const VUE = [

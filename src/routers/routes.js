@@ -156,6 +156,14 @@ const VUE = [
       title: 'render函数',
     },
   },
+  {
+    path: '/avatar',
+    name: 'avatar',
+    component: () => import('@views/VUE/avatar.vue'),
+    meta: {
+      title: '头像上传插件',
+    },
+  },
 ];
 
 const configs = [

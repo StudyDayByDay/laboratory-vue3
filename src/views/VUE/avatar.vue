@@ -3,7 +3,7 @@
     <h1>头像插件</h1>
     <div class="avatar" @click="avatarClick">
       <div class="avatar-inner">
-        <img class="img-class" src="../../assets/logo.png" alt="头像" />
+        <img class="img-class" :src="fileSrc" alt="头像" />
         <div class="mask">
           <div class="svg"></div>
         </div>
@@ -16,6 +16,7 @@
 <script setup>
 import {ref} from 'vue';
 
+const fileSrc = ref('https://imgse.com/i/pP9ahnO');
 const input = ref();
 
 const avatarClick = () => {
@@ -28,6 +29,12 @@ const fileChange = ({
   },
 }) => {
   console.log(image);
+  const fr = new FileReader();
+  fr.readAsDataURL(image);
+  fr.onload = () => {
+    // 这里要发出一个事件，把新选的图片传给事件里
+    fileSrc.value = fr.result;
+  };
 };
 </script>
 

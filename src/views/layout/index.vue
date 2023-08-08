@@ -1,47 +1,43 @@
 <template>
-  <div :class="['layout', open ? 'layout-open' : 'layout-close']">
-      <div class="layout-header">
-            <div class="logo">logo</div>
-            <a-menu v-model:selectedKeys="selectedKeys" mode="inline" :open-keys="openKeys" :inline-collapsed="!open" @openChange="onOpenChange" @click="menuClick">
-                <template v-for="item in menus" :key="item.key">
-                    <template v-if="!item.children">
-                        <a-menu-item :key="item.key">
-                            <template #icon>
-                                <span :class="item.icon"></span>
-                            </template>
-                            {{ item.title }}
-                        </a-menu-item>
-                    </template>
-                    <template v-else>
-                        <a-sub-menu :key="item.key" :title="item.title">
-                            <template #icon>
-                                <span :class="item.icon"></span>
-                            </template>
-                            <a-menu-item v-for="(ite) in item.children" :key="ite.key">{{ite.title}}</a-menu-item>
-                        </a-sub-menu>
-                    </template>
+  <div class="layout">
+    <div class="layout-header">
+      <div class="logo">logo</div>
+      <div class="flex-item-1"></div>
+      <div class="menu">
+        <a-menu v-model:selectedKeys="selectedKeys" mode="horizontal" :open-keys="openKeys" :inline-collapsed="!open" @openChange="onOpenChange" @click="menuClick">
+          <template v-for="item in menus" :key="item.key">
+            <template v-if="!item.children">
+              <a-menu-item :key="item.key">
+                <template #icon>
+                  <span :class="item.icon"></span>
                 </template>
-            </a-menu>
+                {{ item.title }}
+              </a-menu-item>
+            </template>
+            <template v-else>
+              <a-sub-menu :key="item.key" :title="item.title">
+                <template #icon>
+                  <span :class="item.icon"></span>
+                </template>
+                <a-menu-item v-for="ite in item.children" :key="ite.key">{{ ite.title }}</a-menu-item>
+              </a-sub-menu>
+            </template>
+          </template>
+        </a-menu>
       </div>
-      <div class="layout-content">
-        <div class="layout-content-head">
-          <menu-fold-outlined @click="open =!open" v-if="open"/>
-          <menu-unfold-outlined @click="open =!open" v-else/>
-        </div>
-        <div class="layout-content-tag">2</div>
-        <div class="layout-content-main">
-          <router-view></router-view>
-        </div>
-      </div>
+    </div>
+    <div class="layout-content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script setup>
+// TODO:下一步来定制主题、排版、样式
 import {ref, watchEffect} from 'vue';
 import {routesToMenus} from '@utils/menu.js';
 import {menuRoutes} from '@/routers/routes.js';
 import {useRouter, useRoute} from 'vue-router';
-import {MenuFoldOutlined, MenuUnfoldOutlined} from '@ant-design/icons-vue';
 
 const router = useRouter();
 const route = useRoute();
@@ -68,10 +64,10 @@ const onOpenChange = (e) => {
 };
 // 点击菜单
 const menuClick = (e) => {
-    // router要写在外面
+  // router要写在外面
   if (e.key !== route.name) {
     router.push({
-      name: e.key
+      name: e.key,
     });
   }
 };
@@ -81,46 +77,22 @@ const menuClick = (e) => {
 // vite提供了对.scss, .sass, .less, .styl 和 .stylus 文件的内置支持
 // 不用为他们安装特定的vite插件，但是必须安装相应的预处理器依赖
 .layout {
-    width: 100%;
-    height: 100%;
-    // display: grid;
-    // grid-template-columns: 100px auto;
-    // grid-template-rows: 100%;
-    &-header {
-        user-select: none;
-        .logo {
-          height: 48px;
-        }
-    }
-    &-content {
-      background-color: #f6f2f2;
-      &-head {
-        height: 48px;
-      }
-      &-tag {
-        height: 30px;
-      }
-      &-main {
-        height: calc(100% - 78px);
-        padding: 10px;
-      }
-    }
+  width: 100%;
+  height: 100%;
+  &-header {
+    height: 46px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  &-content {
+    height: calc(100% - 46px);
+  }
 }
-
-.layout-open {
-  display: grid;
-  grid-template-columns: 210px auto;
-  grid-template-rows: 100%;
+.flex-item-1 {
+  flex: 1;
 }
-
-.layout-close {
-  display: grid;
-  grid-template-columns: 48px auto;
-  grid-template-rows: 100%;
-}
-
-// TODO：后续要把这里提到css部分去
-:deep(.ant-menu.ant-menu-inline-collapsed) {
-  width: 48px;
+:deep(.ant-menu-horizontal) {
+  border-bottom: 0;
 }
 </style>

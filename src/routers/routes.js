@@ -86,12 +86,20 @@ const CSS = [
       title: '气死前端的按钮？',
     },
   },
+  // {
+  //   path: '/dingding',
+  //   name: 'dingding',
+  //   component: () => import('@views/CSS/dingding.vue'),
+  //   meta: {
+  //     title: '钉钉官网效果',
+  //   },
+  // },
   {
-    path: '/dingding',
-    name: 'dingding',
-    component: () => import('@views/CSS/dingding.vue'),
+    path: '/grid-animation',
+    name: 'grid-animation',
+    component: () => import('@views/CSS/grid-animation.vue'),
     meta: {
-      title: '钉钉官网效果',
+      title: 'grid小动画',
     },
   },
 ];
@@ -204,6 +212,22 @@ const plugins = [
     component: () => import('@views/plugins/vue3-seamless-scroll.vue'),
     meta: {
       title: 'vue3-seamless-scroll',
+    },
+  },
+  {
+    path: '/antv-g6-demo',
+    name: 'antv-g6-demo',
+    component: () => import('@views/plugins/antvG6Demo.vue'),
+    meta: {
+      title: 'antv-g6-demo',
+    },
+  },
+  {
+    path: '/antv-g6-diy',
+    name: 'antv-g6-diy',
+    component: () => import('@views/plugins/antvG6DIY/index.vue'),
+    meta: {
+      title: 'antv-g6-自定义节点、边',
     },
   },
 ];

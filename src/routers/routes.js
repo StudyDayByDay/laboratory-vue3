@@ -230,6 +230,14 @@ const plugins = [
       title: 'antv-g6-自定义节点、边',
     },
   },
+  {
+    path: '/antv-g6-combo',
+    name: 'antv-g6-combo',
+    component: () => import('@views/plugins/antvG6Combo/index.vue'),
+    meta: {
+      title: 'antv-g6-组合',
+    },
+  },
 ];
 
 const menuRoutes = [

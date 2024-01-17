@@ -12,6 +12,7 @@ import entityR from '@/assets/images/entityR.png';
 import kalfaE from '@/assets/images/kalfaE.png';
 import kalfaR from '@/assets/images/kalfaR.png';
 
+// 模拟数据
 export const graphData = {
   nodes: [
     {id: '0', nodeType: 'opposite', label: '统一DPI'},
@@ -86,6 +87,12 @@ export const graphData = {
   ],
 };
 
+/**
+ * 设置G6配置，返回G6实例
+ * @param  {String} id 渲染节点
+ * @param  {Ref} ref ref对象，获取其宽高
+ * @return {Object} 返回一个G6实例
+ */
 export default function g6Config(id, ref) {
   const imgData = {oppositeE, oppositeR, fileE, fileR, taskE, taskR, programE, programR, entityE, entityR, kalfaE, kalfaR};
   G6.registerNode(
@@ -192,7 +199,7 @@ export default function g6Config(id, ref) {
         fill: '#ffffff',
         radius: 2,
       },
-      label: 'rru',
+      // label: 'rru',
       labelCfg: {
         style: {
           fill: '#333333',

@@ -102,6 +102,14 @@ const CSS = [
       title: 'grid小动画',
     },
   },
+  {
+    path: '/rotate',
+    name: 'rotate',
+    component: () => import('@views/CSS/rotate.vue'),
+    meta: {
+      title: '旋转视差效果',
+    },
+  },
 ];
 
 const JavaScript = [
@@ -127,6 +135,14 @@ const JavaScript = [
     component: () => import('@views/JavaScript/fileUpload.vue'),
     meta: {
       title: '文件上传',
+    },
+  },
+  {
+    path: '/sparseArray',
+    name: 'sparseArray',
+    component: () => import('@views/JavaScript/sparseArray.vue'),
+    meta: {
+      title: '判断稀疏数组',
     },
   },
 ];
